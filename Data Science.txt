@@ -1,0 +1,113 @@
+Data Science:
+Data science is an interdisciplinary field that integrates concepts from Statistics, Mathematics, and Computer Science to extract knowledge and insights from data. It combines Statistics and mathematics for modeling, analysis, and inference
+Computer science and programming for efficient data processing, storage, and automation
+Domain knowledge for meaningful interpretation within a specific context.
+It involves the end-to-end process of:
+1. Data collection
+2. Data cleaning and preprocessing
+3. Exploratory data analysis
+4. Model building using machine learning
+5. Interpretation and communication of insights
+The goal is to extract meaningful insights from structured and
+unstructured data to support decision-making and prediction
+
+Stages of the Data Science Methodology
+1. Business Understanding
+The purpose of this stage is to clearly define the real-world problem that needs to be solved. It ensures that the project is aligned with business or stakeholder goals before any technical work begins. This prevents solving the wrong problem and provides direction for the entire data science process.
+2. Analytic Approach
+The purpose is to determine the type of analytical method required to solve the problem. It involves deciding whether the task is classification, regression, clustering, or another technique. This stage translates the business problem into a data science problem.
+3. Data Requirements
+The purpose is to identify what data is needed to support the chosen analytical approach. It defines the variables, data sources, and level of detail required to successfully build a model.
+4. Data Collection
+The purpose is to gather the required data from appropriate sources such as databases, APIs, sensors, or external datasets. This ensures that the necessary raw material for analysis is available.
+5. Data Understanding
+The purpose is to explore and assess the collected data to understand its structure, quality, and patterns. This includes identifying missing values, outliers, and initial relationships in the data.
+6. Data Preparation
+The purpose is to clean, transform, and organize the data into a suitable format for modeling. This step improves data quality by handling missing values, encoding variables, and removing inconsistencies.
+7. Modeling
+The purpose is to apply statistical or machine learning algorithms to the prepared data in order to build predictive or descriptive models that address the problem.
+8. Evaluation
+The purpose is to assess how well the model performs and whether it meets the original business objectives. It ensures that the model is accurate, reliable, and useful before deployment.
+9. Deployment
+The purpose is to implement the model into a real-world environment where it can be used for decision-making or automation. This makes the model practically useful beyond analysis.
+10. Feedback
+The purpose is to continuously monitor the model’s performance and update it when necessary. It ensures the model remains accurate over time as new data becomes available or conditions change.
+
+The main purpose of the Data Science Methodology is to provide a clear, structured, and repeatable process for solving data-driven problems. It ensures that data science projects remain aligned with business objectives, reduces the risk of skipping important steps, and improves communication between technical teams and decision-makers. It also helps ensure that solutions are not only statistically sound but also practical and useful in real-world applications.
+
+
+
+Underfitting in Machine Learning, the model is too simple and poorly represents the relationship in the data. As a result, it produces poor accuracy on the training data and similarly poor accuracy on test or new data. The sums of squares (errors) are substantial but remain similar for both training and test sets. This indicates that the model has not captured the underlying structure of the data. Underfitting is characterised by a high bias and low variance, meaning the model makes overly strong simplifying assumptions and is not sensitive to changes in the data.
+
+Overfitting in Machine Learning, the model is overly complex and adapts itself too closely to the training data, including noise and random variation. It produces very good (often near perfect) accuracy on the training data but performs poorly on test or new data because it fails to generalise. In this case, the sum of squares is typically close to zero for the training data but much larger for the test data, showing a large gap in performance. Overfitting is characterised by low bias and high variance, meaning the model fits the training data extremely well but is highly sensitive to changes in the dataset.
+
+A good fit model in Machine Learning, the model is balanced between simplicity and complexity. It represents the relationship in the data well but not perfectly, capturing the main patterns without fitting noise. It produces good accuracy on both training and test data, with no large gap between them. The sums of squares are relatively low and similar for both datasets, indicating consistent performance. A good fit model is characterised by low bias and low variance, meaning it generalises well to new data while still accurately capturing the underlying structure of the data.
+
+
+Data leakage in Machine Learning occurs when information from outside the training process is used to build or evaluate a model. A common example is using the same data for both training and testing, which causes the model to memorize the data and produce misleadingly high accuracy, but perform poorly on new, unseen data.
+
+Data leakage can be prevented by properly separating data and ensuring correct processing steps. First, the dataset should always be split into training and testing sets before any preprocessing is done. Second, only information available at the time of prediction should be used as features, avoiding any future or target-related data. Third, techniques such as cross-validation should be used correctly to ensure fair evaluation. Finally, careful feature engineering and pipeline design should be applied to ensure that no information from the test data influences the training process.
+
+
+An algorithm in Machine Learning is a mathematical technique or equation used to learn from data. It is not concrete because the parameters have not yet been assigned specific values. Instead, it defines the form of the relationship that will be learned from data. For example, the linear regression algorithm can be written as 
+y=mx+b, where 𝑚 and 𝑏 are unknown parameters that can take any values before training.
+
+A model in Machine Learning is the final equation obtained after applying an algorithm to data and learning the parameter values. It is concrete because the parameters have been estimated from the data. For example, after training, a linear regression model may become 
+y=0.45x−19, where the values of 𝑚 and 𝑏 are fixed. Data scientists create models that best fit the data in order to make predictions on new inputs.
+
+A machine learning algorithm in Machine Learning can be represented as a general function with unknown parameters: y=f(x)
+f=learning algorithm
+x={x_i,y_i} i=0,1,...,n training dataset
+y=learned function (model)
+
+e.g., f(x)=mx+b where 𝑚 and 𝑏 are parameters that have not yet been assigned specific values.
+
+A machine learning model in Machine Learning is the same equation after it has been trained on data and the parameters have been learned: ŷ=f(x;m,b)
+x =input features
+m,b =learned parameters
+y = predicted output
+
+e.g., ŷ=0.45𝑥−19 .Here, the parameters 𝑚 and 𝑏 now have specific values obtained from the
+
+
+In Machine Learning, supervised learning is a type of learning where the algorithm is trained on a labelled dataset, meaning each input data point has a corresponding correct output (target). The goal is for the model to learn the relationship between inputs and outputs so it can make accurate predictions on new, unseen data. Common examples include classification (e.g., spam detection) and regression (e.g., predicting house prices).
+
+Unsupervised learning, on the other hand, uses unlabelled data, meaning there are no predefined outputs or target values. The algorithm tries to discover hidden patterns, structures, or groupings within the data on its own. Typical examples include clustering (grouping similar data points, such as customer segmentation) and dimensionality reduction (reducing the number of variables while preserving structure).
+
+
+Perfomance Metrics:
+Consider the existence of a classification model that was trained to determine if 
+patients being admitted to a hospital are at risk of having a heart attack or not. 
+The model then identifies 8 patients that are at risk of having a heart attack 
+when in fact there were actually 12 patients at risk of having a heart attack. Out 
+of these 8 patients identified, 3 were misidentified who are in very good health. 
+Calculate the precision score of the model.  
+2. Calculate the recall score of the model.  
+3. Calculate the F1-score of the model. 
+
+
+Given:
+• TP +FP =8
+• TP +FN =12
+• FP =3
+TP =8−3=5, FN =12−5=7
+
+Accuracy = (TP + TN)/(TP + TN + FP + FN)
+
+Precision = TP/(TP + FP) = 5/8 =0.625
+2. Recall = TP/(TP + FN) = 5/12 ≈ 0.417
+3. F1 = 2(Precision.Recall)/(Precision+Recall) =  2(0.625·0.417)/0.625 + 0.417 ≈ 0.500
+
+
+Gradient Descent is an iterative optimization algorithm used to find the minimum value of a cost (loss) function by adjusting model parameters in the direction that reduces error.
+
+It works by calculating the gradient (slope) of the loss function with respect to the parameters, and then updating the parameters step by step in the opposite direction of the gradient to reduce the error. This process is repeated until the model reaches a point where the loss is minimized or cannot be significantly reduced further.
+
+Consider the following formula: 𝑦 = 𝑎𝑥 − 𝑒𝑎𝑥 
+1. Is the formula an example of an algorithm or is it an example of a model? 
+-The formula is an algorithm.
+
+2. Motivate your answer in 1.5.1 by explaining why the formula falls into the category that you specified.
+-an algorithm is a mathematical equation or structure that defines the form of a relationship but does not yet have specific parameter values learned from data. The formula 
+𝑦=𝑎𝑥−𝑒^(𝑎𝑥) contains parameters such as 𝑎 that are not assigned any fixed value, meaning it is still a general mathematical representation. Since no data has been used to determine or “learn” the value of 𝑎, the equation is not yet a concrete fitted result. Therefore, it represents an algorithm rather than a model.
+

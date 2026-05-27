@@ -1,0 +1,329 @@
+	Theory
+2022
+
+1.1 Explain the main differences between supervised and unsupervised machine learning. (2)
+
+In Machine Learning, supervised learning is a type of learning where the algorithm is trained on a labelled dataset, meaning each input data point has a corresponding correct output (target). The goal is for the model to learn the relationship between inputs and outputs so it can make accurate predictions on new, unseen data. Common examples include classification (e.g., spam detection) and regression (e.g., predicting house prices).
+
+Unsupervised learning, on the other hand, uses unlabelled data, meaning there are no predefined outputs or target values. The algorithm tries to discover hidden patterns, structures, or groupings within the data on its own. Typical examples include clustering (grouping similar data points, such as customer segmentation) and dimensionality reduction (reducing the number of variables while preserving structure).
+
+
+1.2.1 Is the machine learning model overfitting the data, or is it underfitting the data? (1)
+
+The model is underfitting the data.
+
+
+1.2.2 Motivate your answer in 1.2.1 by explaining why the model is either overfitting or underfitting the data. (2)
+
+The model is underfitting because it is a simple linear regression model (a straight line), but the scatter plot clearly shows that the data points follow a curved, non-linear pattern. The straight line is too simple to capture the curvature in the data. This results in high bias, meaning the model consistently makes errors on both the training data and any new, unseen data because it cannot represent the true underlying relationship between the variables.
+
+
+1.2.3 How can this occurrence be prevented in general? (3)
+
+Underfitting can be prevented in several ways.
+
+First, you can increase model complexity by using a higher-degree polynomial (such as a quadratic or cubic function) or switching to a more flexible algorithm like Decision Trees, Random Forests, or Support Vector Machines with non-linear kernels (such as the RBF kernel). These models can capture non-linear relationships that a simple linear model cannot.
+
+Second, you can add more relevant features to the dataset. Including additional informative features can help the model better represent the underlying pattern in the data.
+
+Third, if regularization is being applied (such as L1 or L2 regularization), reducing the regularization strength allows the model to become more flexible and fit the training data more closely.
+
+Fourth, for iterative learning algorithms that use gradient descent, training for more iterations or epochs may help the model converge to a better solution that fits the data more accurately.
+
+
+1.3 Explain step-by-step how the K-Nearest Neighbour algorithm operates to determine which category a new data point belongs to, given a training dataset that contains two or more categories. (4)
+
+The K-Nearest Neighbour (KNN) algorithm follows these steps.
+
+Step 1 – Choose k: First, you select the number of nearest neighbours to consider, denoted as "k". This value is typically chosen as an odd number for binary classification problems to avoid tie votes. The optimal value of k is often found using cross-validation.
+
+Step 2 – Calculate distances: For the new data point whose category you want to predict, you calculate the distance from this point to every single point in the training dataset. The most commonly used distance metric is Euclidean distance, though other metrics like Manhattan distance can also be used.
+
+Step 3 – Select the k-nearest neighbours: You identify the k training data points that have the smallest distances to the new data point. These are the "nearest neighbours" of the new point.
+
+Step 4 – Vote and assign the category: You examine the categories (class labels) of these k nearest neighbours and determine which category appears most frequently. The new data point is then assigned to that majority category. If there is a tie (which can happen when k is even), you can break the tie by reducing k by one, using a weighted voting scheme where closer neighbours have more influence, or simply choosing randomly between the tied categories.
+
+
+1.4 Consider the data table below: 
+HBP		Age < 60	HA
+Yes		Yes		Yes
+No		Yes		No
+Yes		Yes		No
+No		Yes		No
+Yes		No		Yes
+Yes		Yes		No
+Yes		No		Yes
+
+1.4.1 Using the Gini Impurity metric, determine the root feature of the decision tree. Show all your calculations.(11)
+
+Total samples (n) = 7
+• HA=Yes: 3 samples
+• HA=No: 4 samples
+
+	Gini impurity before split:
+Gini(parent) = 1 - (3/7)² - (4/7)² = 24/49
+	
+	 High Blood Pressure (HBP):
+Gini(HBP=Yes) = 1 - (3/5)² - (2/5)² = 12/25
+
+Gini(HBP=No) = 1 - (0/2)² - (2/2)² = 1 - 0 - 1 = 0
+
+Gini(HBP) = (5/7) × (12/25) + (2/7) × 0 = 12/35
+
+Information Gain(HBP) = 24/49 – 12/35 = 36/245
+
+	 Younger than 60 (Age < 60):
+Gini(Age<60=Yes) = 1 - (1/5)² - (4/5)² = 8/25
+
+Gini(Age<60=No) = 1 - (2/2)² - (0/2)² = 0
+
+Gini(Age<60) = (5/7) × (8/25) + (2/7) × 0 = 8/35 
+
+Information Gain(Age<60) = 24/49 – 8/35 = 64/245
+	
+	 Root feature:
+
+Gain(HBP) = 36/245 ≈ 0.1469
+
+Gain(Age < 60) = 64/245 ≈ 0.2612
+
+Since (Age < 60) has the higher information gain (0.2612 > 0.1469), it is the better feature to split on.
+
+Conclusion: The root feature is "Younger than 60 (Age < 60)".
+
+
+1.4.2 Draw a decision tree that is capable of determining whether a person will suffer a heart attack, given the person’s blood pressure and age status.(4) 
+
+                    ┌──────────────┐
+                    │     Age < 60?     │
+                    │        (Root)     │
+                    └─────────┬────┘
+                                 │
+              ┌──────────────┴─────────────┐
+              │ Yes                                 │ No
+              ▼                                    ▼
+    ┌─────────────┐                    ┌─────────────┐
+    │   HBP?          │                    │   Heart Attack  │
+    │                 │                    │      YES        │
+    └──────┬──────┘                    │  (2 records)    │
+             │                             └─────────────┘
+      ┌─────┴──────────┐
+      │ Yes                │ No
+      ▼                   ▼
+┌──────────┐         ┌───────────┐
+│Heart Attack  │        │Heart Attack   │
+│    NO        │        │    NO         │
+│(majority:    │        │(2 records)    │
+│ 1 Yes,       │        └───────────┘
+│ 2 No)        │
+└──────────┘
+
+
+2023
+
+1.1 Consider the following learning curves of two machine learning models. On the left, a learning curve of a Support Vector Machine classifier and on the right, a learning curve of a K-Nearest Neighbour classifier: 
+
+1.1.1 Which model would most probably provide better prediction results? (1)
+
+The Support Vector Machine classifier (SVM) classifier would most probably provide better prediction results.
+
+
+1.1.2 Motivate your answer in 1.1.1 by explaining why the relevant model would provide better prediction results.(3)
+
+For the KNN classifier (right graph), the training score (blue dashed line) is very high and remains high as the training set size increases. However, the cross-validation score (green solid line) is significantly lower than the training score and does not improve much as more data is added. This large gap between the training score and the cross-validation score indicates that the SVM model is overfitting the training data. It has learned the training data too well, including noise and irrelevant patterns, but fails to generalize to unseen data.
+
+For the SVN classifier (leftaph), the training score and cross-validation score are much closer together across all training set sizes. As the training set size increases, both scores improve and converge toward each other. This indicates that the KNN model is generalizing well and is not overfitting. The model captures the underlying patterns in the data without memorizing noise.
+
+Therefore, the SVN classifier would provide better prediction results on new, unseen data because it demonstrates better generalization and lower overfitting compared to the SVM classifier in this specific case.
+
+1.2 Consider the following scatter plot: 
+1.2.1 Draw a dendrogram to illustrate how the data points can be grouped by means of Agglomerative Hierarchical clustering.(5)  
+
+
+Height
+  |
+3.2 |                                              ┌─────────────┐
+    |                                         ┌────┘             └────┐
+3.0 |                                     ┌────┘                     └────┐
+    |                                 ┌────┘                             └────┐
+2.6 |                             ┌────┘                                     └────┐
+    |                         ┌────┘                                             └────┐
+2.0 |                     ┌────┘                                                     └────┐
+    |                 ┌────┘                                                             └────┐
+1.8 |             ┌────┘                                                                     └────┐
+    |         ┌────┘                                                                             └────┐
+1.3 |     ┌────┘                                                                                       └────┐
+    |     │    ┌────┐                                                                                       │
+1.0 |     │    │    │                                                                                       │
+    |     │    │    │                                                                                       │
+0.7 |     │    │    └────┐                                                                                  │
+    |     │    │         │                                                                                  │
+0.6 |     │    │         └────┐                                                                             │
+    |     │    │              │                                                                             │
+0.0 |_____┴____┴____┬____┬____┴____┬____┬____┬____┬____┬____┬____┬____┬____┬____┬____┬____┬____┬____┬____┐
+                    A    B    C    D    E    F
+
+
+
+1.3 Explain the steps that are involved when the k-Means clustering algorithm is used to group data points into clusters.(5)
+  
+Step 1 – Choose the number of clusters (k): First, you must decide how many clusters you want to create. The value of k is typically chosen using domain knowledge, the elbow method (plotting inertia vs. k), or the silhouette score method.
+
+Step 2 – Initialize the cluster centroids: Randomly select k data points from the dataset to serve as the initial cluster centroids (centers). Alternatively, k-means++ can be used to choose initial centroids that are far apart from each other, which often leads to better and more consistent results.
+
+Step 3 – Assign each data point to the nearest centroid: Calculate the distance (usually Euclidean distance) from each data point to every centroid. Assign each point to the cluster whose centroid is closest.
+
+Step 4 – Update the centroids: After all points have been assigned, recalculate each centroid as the mean (average) of all data points that belong to that cluster. The centroid "moves" to the center of its assigned points.
+
+Step 5 – Repeat steps 3 and 4 until convergence: Continue alternating between assigning points (step 3) and updating centroids (step 4) until the centroids no longer change significantly (convergence) or until a maximum number of iterations is reached. At convergence, the clusters are finalised.
+
+
+1.4 Briefly discuss the most important pre-processing steps when preparing text data for sentiment analysis.(6)  
+
+Parse HTML or any other form of tagged text.
+Remove punctuations but keep emoticons.
+Convert all text to lower case and remove whitespaces.
+Remove unwanted digits and stopwords.
+Convert words to their base form by means of stemming or lemmatisation.
+Tokenize the text by breaking it up into separate words or sentences.
+
+2024
+
+1.1 Consider the following learning curves of two machine learning models. On the left, a learning curve of a Support Vector Machine classifier and on the right, a learning curve of a K-Nearest Neighbour classifier:
+
+1.1.1 Which model would most probably provide better prediction results? (1)
+
+The Support Vector Machine classifier (SVM) classifier would most probably provide better prediction results.
+
+
+1.1.2 Motivate your answer in 1.1.1 by explaining why the relevant model would provide better prediction results.(3)
+
+For the KNN classifier (right graph), the training score (blue dashed line) is very high and remains high as the training set size increases. However, the cross-validation score (green solid line) is significantly lower than the training score and does not improve much as more data is added. This large gap between the training score and the cross-validation score indicates that the SVM model is overfitting the training data. It has learned the training data too well, including noise and irrelevant patterns, but fails to generalize to unseen data.
+
+For the SVN classifier (leftaph), the training score and cross-validation score are much closer together across all training set sizes. As the training set size increases, both scores improve and converge toward each other. This indicates that the KNN model is generalizing well and is not overfitting. The model captures the underlying patterns in the data without memorizing noise.
+
+Therefore, the SVN classifier would provide better prediction results on new, unseen data because it demonstrates better generalization and lower overfitting compared to the SVM classifier in this specific case.
+
+
+1.2 Consider the following scatter plot:
+1.2.1 Draw a dendrogram to illustrate how the data points can be grouped by means of Agglomerative Hierarchical clustering by using the minimum similarity algorithm (single-linkage algorithm).(4)
+
+Height
+  |
+4.5 |                                                    ┌─────────────┐
+    |                                               ┌────┘             └────┐
+4.1 |                                           ┌────┘                     └────┐
+    |                                       ┌────┘                             └────┐
+3.6 |                                   ┌────┘                                     └────┐
+    |                               ┌────┘                                             └────┐
+3.2 |                           ┌────┘                                                     └────┐
+    |                       ┌────┘                                                             └────┐
+3.0 |                   ┌────┘                                                                     └────┐
+    |               ┌────┘                                                                             └────┐
+2.0 |           ┌────┘                                                                                       └────┐
+    |       ┌────┘                                                                                               └────┐
+1.4 |   ┌────┘                                                                                                       └────┐
+    |   │   ┌────┐                                                                                                       │
+1.0 |   │   │    └────┐                                                                                                  │
+    |   │   │         │                                                                                                  │
+0.5 |   │   │         └────┐                                                                                             │
+    |   │   │              │                                                                                             │
+0.0 |___┴___┴____┬____┬____┴____┬____┬____┬____┬____┬____┬____┬____┬____┬____┬____┬____┬____┬____┬____┬____┬____┬____┐
+                 A    B    C    D    E    F    G    H    I
+
+
+
+1.3 Consider the data table below that can be used to train a decision tree capable of determining whether a person is likely to suffer a heart attack depending on the person’s blood pressure and age:
+
+HBP		Age < 60	HA
+Yes		Yes		Yes
+No		Yes		No
+Yes		Yes		No
+No		Yes		No
+Yes		No		Yes
+Yes		Yes		No
+Yes		No		Yes
+
+1.3.1 Using the Gini Impurity metric, determine the root feature of the decision tree. Show all your calculations.(11)
+
+Total samples (n) = 7
+• HA=Yes: 3 samples
+• HA=No: 4 samples
+
+	Gini impurity before split:
+Gini(parent) = 1 - (3/7)² - (4/7)² = 24/49
+	
+	 High Blood Pressure (HBP):
+Gini(HBP=Yes) = 1 - (3/5)² - (2/5)² = 12/25
+
+Gini(HBP=No) = 1 - (0/2)² - (2/2)² = 1 - 0 - 1 = 0
+
+Gini(HBP) = (5/7) × (12/25) + (2/7) × 0 = 12/35
+
+Information Gain(HBP) = 24/49 – 12/35 = 36/245
+
+	 Younger than 60 (Age < 60):
+Gini(Age<60=Yes) = 1 - (1/5)² - (4/5)² = 8/25
+
+Gini(Age<60=No) = 1 - (2/2)² - (0/2)² = 0
+
+Gini(Age<60) = (5/7) × (8/25) + (2/7) × 0 = 8/35
+
+Information Gain(Age<60) = 24/49 – 8/35 = 64/245
+	
+	 Root feature:
+
+Gain(HBP) = 36/245 ≈ 0.1469
+
+Gain(Age < 60) = 64/245 ≈ 0.2612
+
+Since (Age < 60) has the higher information gain (0.2612 > 0.1469), it is the better feature to split on.
+
+Conclusion: The root feature is "Younger than 60 (Age < 60)".
+
+1.4 Explain the steps that are involved when the k-Means clustering algorithm is used to group data points into clusters.(5)
+
+Step 1: Choose the number of clusters (k)
+
+Before running the algorithm, you must decide how many clusters you want to create. This value, denoted as k, must be specified in advance. Choosing the right value of k is important and can be done using methods such as:
+
+The elbow method (plotting inertia vs. k and looking for an "elbow")
+
+The silhouette score (measuring how similar points are to their own cluster compared to other clusters)
+
+Domain knowledge or business requirements
+
+Step 2: Initialize the cluster centroids
+
+Randomly select k data points from the dataset to serve as the initial centroids (cluster centers). Each centroid represents the centre of its cluster.
+
+Alternatively, the k-means++ initialization method can be used. This method chooses initial centroids that are far apart from each other, which often leads to better and more consistent results than purely random initialization.
+
+At this stage, you have k cluster centres, but no points have been assigned to them yet.
+
+Step 3: Assign each data point to the nearest centroid
+
+Calculate the distance from every data point to each of the k centroids. The most commonly used distance metric is Euclidean distance, although other distance measures like Manhattan distance can also be used.
+
+Each data point is then assigned to the cluster whose centroid is closest (smallest distance). After this step, every data point belongs to exactly one cluster, and each cluster has a set of points assigned to it.
+
+Step 4: Update the centroids
+
+After all points have been assigned to clusters, recalculate the position of each centroid. The new centroid for a cluster is calculated as the mean (average) of all data points currently assigned to that cluster.
+
+For a cluster with n points, the new centroid is found by averaging the x-coordinates and y-coordinates (or all dimensions in higher-dimensional data) of all points in the cluster. This moves the centroid to the actual centre of its assigned points.
+
+Step 5: Repeat steps 3 and 4 until convergence
+
+Repeat the assignment step (Step 3) and the update step (Step 4) iteratively. The algorithm stops (converges) when one of the following conditions is met:
+
+The centroids no longer change significantly between iterations (their positions stabilise)
+
+The maximum number of iterations set by the user is reached (this prevents infinite looping)
+
+The cluster assignments no longer change (no points switch from one cluster to another)
+
+When convergence is reached, the final clusters are returned as the output of the algorithm.
+
+
+
