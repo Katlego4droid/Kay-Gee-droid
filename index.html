@@ -1,25 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Collection of public Jupyter Notebooks and assignments">
   <title>My Jupyter Notebooks</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      color: white;
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+
+    .notebook-section {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 3px solid #667eea;
+    }
+
+    .notebook-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+      list-style: none;
+    }
+
+    .notebook-item {
+      background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+      border: 2px solid #667eea30;
+      border-radius: 8px;
+      padding: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .notebook-item:hover {
+      transform: translateY(-5px);
+      border-color: #667eea;
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+      background: linear-gradient(135deg, #667eea25 0%, #764ba225 100%);
+    }
+
+    .notebook-item a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .notebook-item a::before {
+      content: "📓";
+      margin-right: 0.75rem;
+      font-size: 1.25rem;
+    }
+
+    .notebook-item a:hover {
+      color: #667eea;
+    }
+
+    footer {
+      text-align: center;
+      color: white;
+      margin-top: 3rem;
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .notebook-list {
+        grid-template-columns: 1fr;
+      }
+
+      .notebook-section {
+        padding: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <header>
+      <h1>📚 My Jupyter Notebooks</h1>
+      <p class="subtitle">Collection of data science projects and assignments</p>
+    </header>
 
-  <h1>Public Jupyter Notebooks</h1>
+    <section class="notebook-section">
+      <h2 class="section-title">Year-based Notebooks</h2>
+      <ul class="notebook-list">
+        <li class="notebook-item"><a href="2022.ipynb">2022</a></li>
+        <li class="notebook-item"><a href="2023.ipynb">2023</a></li>
+        <li class="notebook-item"><a href="2023(1).ipynb">2023 (1)</a></li>
+        <li class="notebook-item"><a href="2023(2).ipynb">2023 (2)</a></li>
+        <li class="notebook-item"><a href="2024(1).ipynb">2024 (1)</a></li>
+        <li class="notebook-item"><a href="2024(2).ipynb">2024 (2)</a></li>
+        <li class="notebook-item"><a href="2025.ipynb">2025</a></li>
+      </ul>
+    </section>
 
-  <ul>
-    <li><a href="2022.ipynb">2022</a></li>
-    <li><a href="2023(1).ipynb">2023 (1)</a></li>
-    <li><a href="2023(2).ipynb">2023 (2)</a></li>
-    <li><a href="2023.ipynb">2023</a></li>
-    <li><a href="2024(1).ipynb">2024 (1)</a></li>
-    <li><a href="2024(2).ipynb">2024 (2)</a></li>
-    <li><a href="2025.ipynb">2025</a></li>
-    <li><a href="Ass2_2025854932.ipynb">Assignment 2</a></li>
-    <li><a href="Ass3_2025854932.ipynb">Assignment 3</a></li>
-    <li><a href="Ass4_2025854932.ipynb">Assignment 4</a></li>
-    <li><a href="Assignment2.ipynb">Assignment2</a></li>
-  </ul>
+    <section class="notebook-section">
+      <h2 class="section-title">Assignments</h2>
+      <ul class="notebook-list">
+        <li class="notebook-item"><a href="Assignment2.ipynb">Assignment 2</a></li>
+        <li class="notebook-item"><a href="Ass2_2025854932.ipynb">Assignment 2 (ID)</a></li>
+        <li class="notebook-item"><a href="Ass3_2025854932.ipynb">Assignment 3</a></li>
+        <li class="notebook-item"><a href="Ass4_2025854932.ipynb">Assignment 4</a></li>
+      </ul>
+    </section>
 
+    <footer>
+      <p>Last updated: May 2026</p>
+    </footer>
+  </div>
 </body>
 </html>
